@@ -1,0 +1,11 @@
+framework module Netvit {
+  umbrella header "Netvit.h"
+
+  export *
+  module * { export * }
+}
+
+module Netvit.Swift {
+    header "Netvit-Swift.h"
+    requires objc
+}
