@@ -17,14 +17,60 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="vFa-a5-Zoh">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="172" id="vFa-a5-Zoh" customClass="CollageTableViewCell" customModule="PhotoCollage" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="172"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vFa-a5-Zoh" id="421-rh-fkj">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="171.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="lah-sn-UzN">
+                                            <rect key="frame" x="16" y="11" width="343" height="150"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Lkf-Y2-NQa">
+                                                <size key="itemSize" width="104" height="150"/>
+                                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            </collectionViewFlowLayout>
+                                            <cells>
+                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionCell" id="9e4-ry-2Mw" customClass="CollageCollectionViewCell" customModule="PhotoCollage" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="104" height="150"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                                        <rect key="frame" x="0.0" y="0.0" width="104" height="150"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <subviews>
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zub-t9-Lgr">
+                                                                <rect key="frame" x="0.0" y="0.0" width="104" height="150"/>
+                                                            </imageView>
+                                                        </subviews>
+                                                    </view>
+                                                    <constraints>
+                                                        <constraint firstItem="zub-t9-Lgr" firstAttribute="top" secondItem="9e4-ry-2Mw" secondAttribute="top" id="HAv-bn-9Vy"/>
+                                                        <constraint firstAttribute="trailing" secondItem="zub-t9-Lgr" secondAttribute="trailing" id="MTW-cq-bzS"/>
+                                                        <constraint firstItem="zub-t9-Lgr" firstAttribute="leading" secondItem="9e4-ry-2Mw" secondAttribute="leading" id="kcI-jP-dfa"/>
+                                                        <constraint firstAttribute="bottom" secondItem="zub-t9-Lgr" secondAttribute="bottom" id="oSC-ub-NLL"/>
+                                                    </constraints>
+                                                    <connections>
+                                                        <outlet property="collageImageView" destination="zub-t9-Lgr" id="hYX-wP-SUN"/>
+                                                    </connections>
+                                                </collectionViewCell>
+                                            </cells>
+                                        </collectionView>
+                                    </subviews>
                                 </tableViewCellContentView>
+                                <constraints>
+                                    <constraint firstItem="lah-sn-UzN" firstAttribute="top" secondItem="vFa-a5-Zoh" secondAttribute="top" constant="11" id="0js-V3-jeq"/>
+                                    <constraint firstItem="lah-sn-UzN" firstAttribute="leading" secondItem="vFa-a5-Zoh" secondAttribute="leading" constant="16" id="3IN-wT-QKh"/>
+                                    <constraint firstAttribute="bottom" secondItem="lah-sn-UzN" secondAttribute="bottom" constant="11" id="4pC-Lc-mDN"/>
+                                    <constraint firstAttribute="trailing" secondItem="lah-sn-UzN" secondAttribute="trailing" constant="16" id="KBF-a1-wgh"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="collectionView" destination="lah-sn-UzN" id="xts-mW-uck"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

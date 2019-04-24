@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		243F7730F8198708CE6E9F64 /* Pods_PhotoCollage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59D2548621A096698D245B27 /* Pods_PhotoCollage.framework */; };
+		585750CC226F52CD00C56BB5 /* CollageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585750CB226F52CD00C56BB5 /* CollageTableViewCell.swift */; };
+		585750CE226F52EB00C56BB5 /* CollageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585750CD226F52EB00C56BB5 /* CollageCollectionViewCell.swift */; };
+		58B33EF7227045ED001C0711 /* ResultsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B33EF6227045ED001C0711 /* ResultsTableController.swift */; };
+		58B33EF9227048EB001C0711 /* ResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B33EF8227048EB001C0711 /* ResultsTableViewCell.swift */; };
 		58B38A78226D92CB001CA116 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B38A77226D92CB001CA116 /* AppDelegate.swift */; };
 		58B38A7D226D92CB001CA116 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58B38A7B226D92CB001CA116 /* Main.storyboard */; };
 		58B38A7F226D92CD001CA116 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58B38A7E226D92CD001CA116 /* Assets.xcassets */; };
@@ -33,6 +37,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		585750CB226F52CD00C56BB5 /* CollageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollageTableViewCell.swift; sourceTree = "<group>"; };
+		585750CD226F52EB00C56BB5 /* CollageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollageCollectionViewCell.swift; sourceTree = "<group>"; };
+		58B33EF6227045ED001C0711 /* ResultsTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsTableController.swift; sourceTree = "<group>"; };
+		58B33EF8227048EB001C0711 /* ResultsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsTableViewCell.swift; sourceTree = "<group>"; };
 		58B38A74226D92CB001CA116 /* PhotoCollage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoCollage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		58B38A77226D92CB001CA116 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		58B38A7C226D92CB001CA116 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -102,9 +110,13 @@
 		58B38A8A226D9459001CA116 /* UILayer */ = {
 			isa = PBXGroup;
 			children = (
+				585750CD226F52EB00C56BB5 /* CollageCollectionViewCell.swift */,
+				585750CB226F52CD00C56BB5 /* CollageTableViewCell.swift */,
 				58B38A94226D9560001CA116 /* CollageTableViewController.swift */,
 				58B38A7B226D92CB001CA116 /* Main.storyboard */,
+				58B33EF8227048EB001C0711 /* ResultsTableViewCell.swift */,
 				58B38A80226D92CD001CA116 /* LaunchScreen.storyboard */,
+				58B33EF6227045ED001C0711 /* ResultsTableController.swift */,
 			);
 			path = UILayer;
 			sourceTree = "<group>";
@@ -259,7 +271,11 @@
 			files = (
 				58B38A97226D95B7001CA116 /* PhotoStorage.swift in Sources */,
 				58B38A95226D9560001CA116 /* CollageTableViewController.swift in Sources */,
+				58B33EF9227048EB001C0711 /* ResultsTableViewCell.swift in Sources */,
+				585750CE226F52EB00C56BB5 /* CollageCollectionViewCell.swift in Sources */,
+				58B33EF7227045ED001C0711 /* ResultsTableController.swift in Sources */,
 				58B38A78226D92CB001CA116 /* AppDelegate.swift in Sources */,
+				585750CC226F52CD00C56BB5 /* CollageTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
