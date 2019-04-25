@@ -43,6 +43,7 @@ class CollageTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollect
         return triplePhotoUrl.count
     }
     
+    // reuse cell
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath) as! CollageCollectionViewCell
         cell.updateCollectionViewCell(withUrl: triplePhotoUrl[indexPath.row])

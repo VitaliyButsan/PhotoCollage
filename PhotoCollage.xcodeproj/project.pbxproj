@@ -111,12 +111,12 @@
 			isa = PBXGroup;
 			children = (
 				585750CD226F52EB00C56BB5 /* CollageCollectionViewCell.swift */,
+				58B33EF8227048EB001C0711 /* ResultsTableViewCell.swift */,
 				585750CB226F52CD00C56BB5 /* CollageTableViewCell.swift */,
+				58B33EF6227045ED001C0711 /* ResultsTableController.swift */,
 				58B38A94226D9560001CA116 /* CollageTableViewController.swift */,
 				58B38A7B226D92CB001CA116 /* Main.storyboard */,
-				58B33EF8227048EB001C0711 /* ResultsTableViewCell.swift */,
 				58B38A80226D92CD001CA116 /* LaunchScreen.storyboard */,
-				58B33EF6227045ED001C0711 /* ResultsTableController.swift */,
 			);
 			path = UILayer;
 			sourceTree = "<group>";

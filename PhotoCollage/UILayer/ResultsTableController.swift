@@ -69,7 +69,16 @@ class ResultsTableController: UITableViewController, UISearchResultsUpdating {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return storagePhoto.searchingPhotoStorage.count
     }
+    
+    // delete row with swipe
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            storagePhoto.searchingPhotoStorage.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
 
+    // reuse cell
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResultsCell", for: indexPath) as! ResultsTableViewCell
         cell.updateCell(withPhtoURL: storagePhoto.searchingPhotoStorage[indexPath.row].urls.small)

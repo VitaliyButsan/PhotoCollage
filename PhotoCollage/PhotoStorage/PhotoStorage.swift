@@ -24,4 +24,13 @@ class PhotoStorage {
     func clearSearchingPhoto() {
         searchingPhotoStorage.removeAll()
     }
+    
+    // remove three elements from storage
+    func removeTriplet(atIndex currentRow: Int) {
+        let currentIndex = currentRow * 3
+        
+        if currentRow < storagePhoto.count {
+            storagePhoto.removeSubrange(currentIndex ..< currentIndex + 3)
+        }
+    }
 }

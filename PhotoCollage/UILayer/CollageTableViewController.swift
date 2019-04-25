@@ -113,10 +113,20 @@ class CollageTableViewController: UITableViewController {
         return photoStoreClass.storagePhoto.count / 3
     }
     
+    // row height
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 175
     }
+    
+    // delete row with swipe
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            photoStoreClass.removeTriplet(atIndex: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
 
+    // reuse cell
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CollageTableViewCell
         let triplet = tripleFromStorage(fromPhotoStorage: photoStoreClass.storagePhoto, withRow: indexPath.row)
