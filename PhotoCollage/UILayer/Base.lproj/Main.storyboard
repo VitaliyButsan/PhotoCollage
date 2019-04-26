@@ -54,9 +54,6 @@
                                                         <constraint firstItem="zub-t9-Lgr" firstAttribute="leading" secondItem="9e4-ry-2Mw" secondAttribute="leading" id="kcI-jP-dfa"/>
                                                         <constraint firstAttribute="bottom" secondItem="zub-t9-Lgr" secondAttribute="bottom" id="oSC-ub-NLL"/>
                                                     </constraints>
-                                                    <connections>
-                                                        <outlet property="collageImageView" destination="zub-t9-Lgr" id="hYX-wP-SUN"/>
-                                                    </connections>
                                                 </collectionViewCell>
                                             </cells>
                                         </collectionView>

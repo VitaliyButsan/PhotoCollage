@@ -9,6 +9,7 @@
 import UIKit
 import Netvit
 
+// main table controller, with triple photo in a row
 class CollageTableViewController: UITableViewController {
 
     private let photoStoreClass = PhotoStorage()
@@ -20,6 +21,8 @@ class CollageTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        // disable selection rows
+        tableView.allowsSelection = false
         // set up search controller
         setUpSearchController()
         // call refresh control
@@ -131,6 +134,7 @@ class CollageTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CollageTableViewCell
         let triplet = tripleFromStorage(fromPhotoStorage: photoStoreClass.storagePhoto, withRow: indexPath.row)
         cell.updateCell(withTriplePhoto: triplet)
+        cell.zoomDelegateBrige = self
         return cell
     }
     
@@ -141,10 +145,64 @@ class CollageTableViewController: UITableViewController {
             loadingStatusFlag = false
             receiveNewPage()
         }
-        
-        
     }
     
-
+    
+    // MARK: — ZOOM STAFF
+    //----------------------------------------
+    var basicFrame: CGRect?
+    var grayBackgroundView: UIView?
+    var basicImageView: UIImageView?
+    
+    // realized zoom logic
+    func performZoomForImageView(_ basicImageView: UIImageView) {
+        
+        self.basicImageView = basicImageView
+        basicImageView.isHidden = true
+        // create new-frame on original photo place
+        basicFrame = basicImageView.superview?.convert(basicImageView.frame, to: nil)
+        
+        // create and set up zoomingView from basicFrame
+        let zoomingView = UIImageView(frame: basicFrame!)
+        zoomingView.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+        zoomingView.image = basicImageView.image
+        zoomingView.isUserInteractionEnabled = true
+        zoomingView.contentMode = .scaleAspectFill
+        zoomingView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleZoomOut)))
+        
+        // created and setting new window from main window
+        if let keyWindow = UIApplication.shared.keyWindow {
+            grayBackgroundView = UIView(frame: keyWindow.frame)
+            grayBackgroundView?.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+            grayBackgroundView?.alpha = 0
+            keyWindow.addSubview(grayBackgroundView!)
+            keyWindow.addSubview(zoomingView)
+            
+            // animete window under zoom photo
+            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
+                self.grayBackgroundView?.alpha = 1
+                zoomingView.frame = CGRect(x: 0, y: 0, width: keyWindow.frame.width, height: self.basicFrame!.height)
+                zoomingView.center = keyWindow.center
+            }, completion: nil)
+        }
+    }
+    
+    // handling zoom out
+    @objc func handleZoomOut(tapGesture: UITapGestureRecognizer) {
+        
+        if let zoomOutImageView = tapGesture.view {
+            // animated zoom out
+            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
+                // zoom-frame reverse taked size of basic-frame
+                zoomOutImageView.frame = self.basicFrame!
+                self.grayBackgroundView?.alpha = 0
+            }) { (completed: Bool) in
+                // removed zoom-frame until next time
+                zoomOutImageView.removeFromSuperview()
+                self.basicImageView?.isHidden = false
+            }
+        }
+    }
+    
 
 }

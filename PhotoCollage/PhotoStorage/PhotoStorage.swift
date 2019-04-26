@@ -9,6 +9,7 @@
 import Foundation
 import Netvit
 
+// photo storage
 class PhotoStorage {
     
     // storage arrays for received data

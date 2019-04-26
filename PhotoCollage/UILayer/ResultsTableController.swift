@@ -10,6 +10,7 @@ import UIKit
 import Netvit
 import SDWebImage
 
+// table controller showing searching results
 class ResultsTableController: UITableViewController, UISearchResultsUpdating {
 
     private let storagePhoto = PhotoStorage()
@@ -17,8 +18,11 @@ class ResultsTableController: UITableViewController, UISearchResultsUpdating {
     private var searchingInput = ""
     private var loadingStatusFlag = false
     
+    // view did load but not displayed yet
     override func viewDidLoad() {
         super.viewDidLoad()
+        // disable selection rows
+        tableView.allowsSelection = false
         // register the cell
         tableView.register(ResultsTableViewCell.self, forCellReuseIdentifier: "SearchResultsCell")
     }
@@ -82,6 +86,8 @@ class ResultsTableController: UITableViewController, UISearchResultsUpdating {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResultsCell", for: indexPath) as! ResultsTableViewCell
         cell.updateCell(withPhtoURL: storagePhoto.searchingPhotoStorage[indexPath.row].urls.small)
+        // says, who perform delegated zoom logic
+        cell.resultsTableController = self
         return cell
     }
 
@@ -108,6 +114,63 @@ class ResultsTableController: UITableViewController, UISearchResultsUpdating {
             self.tableView.reloadData()
             // new searching request
             searchPhoto(viaName: searchingInput)
+        }
+    }
+    
+    
+    // MARK: — ZOOM STAFF
+    // --------------------------------------------
+    var basicFrame: CGRect?
+    var blackBackgroundView: UIView?
+    var basicImageView: UIImageView?
+    
+    // realized zoom logic
+    func performZoomForImageView(_ basicImageView: UIImageView) {
+        
+        self.basicImageView = basicImageView
+        basicImageView.isHidden = true
+        //create new-frame on original photo place
+        basicFrame = basicImageView.superview?.convert(basicImageView.frame, to: nil)
+        
+        // create and set up zooming view from basicFrame
+        let zoomingView = UIImageView(frame: basicFrame!)
+        zoomingView.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+        zoomingView.image = basicImageView.image
+        zoomingView.isUserInteractionEnabled = true
+        zoomingView.contentMode = .scaleAspectFill
+        zoomingView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleZoomOut)))
+        
+        // created and setting new frame from main window
+        if let keyWindow = UIApplication.shared.keyWindow {
+            blackBackgroundView = UIView(frame: keyWindow.frame)
+            blackBackgroundView?.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+            blackBackgroundView?.alpha = 0
+            keyWindow.addSubview(blackBackgroundView!)
+            keyWindow.addSubview(zoomingView)
+            
+            // animate frame under zoom photo
+            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
+                self.blackBackgroundView?.alpha = 1
+                zoomingView.frame = CGRect(x: 0, y: 0, width: keyWindow.frame.width, height: self.basicFrame!.height)
+                zoomingView.center = keyWindow.center
+            }, completion: nil)
+        }
+    }
+    
+    // handling zoom out
+    @objc func handleZoomOut(tapGesture: UITapGestureRecognizer) {
+        
+        if let zoomOutImageView = tapGesture.view {
+            // animated zoom out
+            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
+                // zoom-frame reverse taked size of basic-frame
+                zoomOutImageView.frame = self.basicFrame!
+                self.blackBackgroundView?.alpha = 0
+            }) { (completed: Bool) in
+                // removed zoom-frame until next time 
+                zoomOutImageView.removeFromSuperview()
+                self.basicImageView?.isHidden = false
+            }
         }
     }
 }
