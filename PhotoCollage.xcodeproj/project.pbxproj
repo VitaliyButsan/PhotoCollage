@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		243F7730F8198708CE6E9F64 /* Pods_PhotoCollage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59D2548621A096698D245B27 /* Pods_PhotoCollage.framework */; };
+		5801AA892276E5540067C33C /* Netvit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58B38A9C226D983C001CA116 /* Netvit.framework */; };
+		5801AA8A2276E5540067C33C /* Netvit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 58B38A9C226D983C001CA116 /* Netvit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5801AA932276E6720067C33C /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5801AA8E2276E6720067C33C /* DataModel.swift */; };
+		5801AA942276E6720067C33C /* NetworkingCommunicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5801AA902276E6720067C33C /* NetworkingCommunicator.swift */; };
+		5801AA952276E6720067C33C /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5801AA922276E6720067C33C /* Router.swift */; };
 		585750CC226F52CD00C56BB5 /* CollageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585750CB226F52CD00C56BB5 /* CollageTableViewCell.swift */; };
 		585750CE226F52EB00C56BB5 /* CollageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585750CD226F52EB00C56BB5 /* CollageCollectionViewCell.swift */; };
 		58B33EF7227045ED001C0711 /* ResultsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B33EF6227045ED001C0711 /* ResultsTableController.swift */; };
@@ -18,18 +23,16 @@
 		58B38A82226D92CD001CA116 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58B38A80226D92CD001CA116 /* LaunchScreen.storyboard */; };
 		58B38A95226D9560001CA116 /* CollageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B38A94226D9560001CA116 /* CollageTableViewController.swift */; };
 		58B38A97226D95B7001CA116 /* PhotoStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B38A96226D95B7001CA116 /* PhotoStorage.swift */; };
-		58B38A9D226D983C001CA116 /* Netvit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58B38A9C226D983C001CA116 /* Netvit.framework */; };
-		58B38A9E226D983C001CA116 /* Netvit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 58B38A9C226D983C001CA116 /* Netvit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		58B38A9B226D97AE001CA116 /* Embed Frameworks */ = {
+		5801AA8B2276E5540067C33C /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				58B38A9E226D983C001CA116 /* Netvit.framework in Embed Frameworks */,
+				5801AA8A2276E5540067C33C /* Netvit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -37,6 +40,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5801AA8E2276E6720067C33C /* DataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
+		5801AA902276E6720067C33C /* NetworkingCommunicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingCommunicator.swift; sourceTree = "<group>"; };
+		5801AA922276E6720067C33C /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		585750CB226F52CD00C56BB5 /* CollageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollageTableViewCell.swift; sourceTree = "<group>"; };
 		585750CD226F52EB00C56BB5 /* CollageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollageCollectionViewCell.swift; sourceTree = "<group>"; };
 		58B33EF6227045ED001C0711 /* ResultsTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsTableController.swift; sourceTree = "<group>"; };
@@ -49,7 +55,7 @@
 		58B38A83226D92CD001CA116 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		58B38A94226D9560001CA116 /* CollageTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollageTableViewController.swift; sourceTree = "<group>"; };
 		58B38A96226D95B7001CA116 /* PhotoStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoStorage.swift; sourceTree = "<group>"; };
-		58B38A9C226D983C001CA116 /* Netvit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Netvit.framework; path = MyFrameworks/Netvit.framework; sourceTree = "<group>"; };
+		58B38A9C226D983C001CA116 /* Netvit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Netvit.framework; sourceTree = "<group>"; };
 		59D2548621A096698D245B27 /* Pods_PhotoCollage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PhotoCollage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BC5675FDFF3FDC90CB5D145 /* Pods-PhotoCollage.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoCollage.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PhotoCollage/Pods-PhotoCollage.debug.xcconfig"; sourceTree = "<group>"; };
 		B4F4005A9E58E82F3C6702F0 /* Pods-PhotoCollage.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoCollage.release.xcconfig"; path = "Pods/Target Support Files/Pods-PhotoCollage/Pods-PhotoCollage.release.xcconfig"; sourceTree = "<group>"; };
@@ -60,7 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				58B38A9D226D983C001CA116 /* Netvit.framework in Frameworks */,
+				5801AA892276E5540067C33C /* Netvit.framework in Frameworks */,
 				243F7730F8198708CE6E9F64 /* Pods_PhotoCollage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -68,11 +74,54 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5801AA882276E4F70067C33C /* Custom Networking Framework */ = {
+			isa = PBXGroup;
+			children = (
+				5801AA8C2276E57A0067C33C /* Netvit source files */,
+				58B38A9C226D983C001CA116 /* Netvit.framework */,
+			);
+			path = "Custom Networking Framework";
+			sourceTree = "<group>";
+		};
+		5801AA8C2276E57A0067C33C /* Netvit source files */ = {
+			isa = PBXGroup;
+			children = (
+				5801AA8F2276E6720067C33C /* NetworkingCommunicator */,
+				5801AA8D2276E6720067C33C /* DataModel */,
+				5801AA912276E6720067C33C /* Router */,
+			);
+			path = "Netvit source files";
+			sourceTree = "<group>";
+		};
+		5801AA8D2276E6720067C33C /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				5801AA8E2276E6720067C33C /* DataModel.swift */,
+			);
+			path = DataModel;
+			sourceTree = "<group>";
+		};
+		5801AA8F2276E6720067C33C /* NetworkingCommunicator */ = {
+			isa = PBXGroup;
+			children = (
+				5801AA902276E6720067C33C /* NetworkingCommunicator.swift */,
+			);
+			path = NetworkingCommunicator;
+			sourceTree = "<group>";
+		};
+		5801AA912276E6720067C33C /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				5801AA922276E6720067C33C /* Router.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
 		58B38A6B226D92CB001CA116 = {
 			isa = PBXGroup;
 			children = (
-				58B38A9C226D983C001CA116 /* Netvit.framework */,
 				58B38A76226D92CB001CA116 /* PhotoCollage */,
+				5801AA882276E4F70067C33C /* Custom Networking Framework */,
 				58B38A75226D92CB001CA116 /* Products */,
 				B8525680561F653EFE1E266F /* Pods */,
 				EA191B80A28B101C184FA130 /* Frameworks */,
@@ -158,7 +207,7 @@
 				58B38A71226D92CB001CA116 /* Frameworks */,
 				58B38A72226D92CB001CA116 /* Resources */,
 				9B3E7E5024D212BD8DE5E0D3 /* [CP] Embed Pods Frameworks */,
-				58B38A9B226D97AE001CA116 /* Embed Frameworks */,
+				5801AA8B2276E5540067C33C /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -271,9 +320,12 @@
 			files = (
 				58B38A97226D95B7001CA116 /* PhotoStorage.swift in Sources */,
 				58B38A95226D9560001CA116 /* CollageTableViewController.swift in Sources */,
+				5801AA952276E6720067C33C /* Router.swift in Sources */,
 				58B33EF9227048EB001C0711 /* ResultsTableViewCell.swift in Sources */,
 				585750CE226F52EB00C56BB5 /* CollageCollectionViewCell.swift in Sources */,
+				5801AA942276E6720067C33C /* NetworkingCommunicator.swift in Sources */,
 				58B33EF7227045ED001C0711 /* ResultsTableController.swift in Sources */,
+				5801AA932276E6720067C33C /* DataModel.swift in Sources */,
 				58B38A78226D92CB001CA116 /* AppDelegate.swift in Sources */,
 				585750CC226F52CD00C56BB5 /* CollageTableViewCell.swift in Sources */,
 			);
@@ -427,6 +479,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MyFrameworks",
+					"$(PROJECT_DIR)/Custom\\ Networking\\ Framework",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/PhotoCollage/Support Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -450,6 +503,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MyFrameworks",
+					"$(PROJECT_DIR)/Custom\\ Networking\\ Framework",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/PhotoCollage/Support Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (

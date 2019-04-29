@@ -48,6 +48,7 @@
                                                             </imageView>
                                                         </subviews>
                                                     </view>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstItem="zub-t9-Lgr" firstAttribute="top" secondItem="9e4-ry-2Mw" secondAttribute="top" id="HAv-bn-9Vy"/>
                                                         <constraint firstAttribute="trailing" secondItem="zub-t9-Lgr" secondAttribute="trailing" id="MTW-cq-bzS"/>
@@ -58,13 +59,13 @@
                                             </cells>
                                         </collectionView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="lah-sn-UzN" secondAttribute="trailing" constant="16" id="7yW-FS-lh2"/>
+                                        <constraint firstItem="lah-sn-UzN" firstAttribute="top" secondItem="421-rh-fkj" secondAttribute="top" constant="11" id="UKf-uc-8L5"/>
+                                        <constraint firstAttribute="bottom" secondItem="lah-sn-UzN" secondAttribute="bottom" constant="10.5" id="eiz-vP-1Df"/>
+                                        <constraint firstItem="lah-sn-UzN" firstAttribute="leading" secondItem="421-rh-fkj" secondAttribute="leading" constant="16" id="oGn-aW-nUc"/>
+                                    </constraints>
                                 </tableViewCellContentView>
-                                <constraints>
-                                    <constraint firstItem="lah-sn-UzN" firstAttribute="top" secondItem="vFa-a5-Zoh" secondAttribute="top" constant="11" id="0js-V3-jeq"/>
-                                    <constraint firstItem="lah-sn-UzN" firstAttribute="leading" secondItem="vFa-a5-Zoh" secondAttribute="leading" constant="16" id="3IN-wT-QKh"/>
-                                    <constraint firstAttribute="bottom" secondItem="lah-sn-UzN" secondAttribute="bottom" constant="11" id="4pC-Lc-mDN"/>
-                                    <constraint firstAttribute="trailing" secondItem="lah-sn-UzN" secondAttribute="trailing" constant="16" id="KBF-a1-wgh"/>
-                                </constraints>
                                 <connections>
                                     <outlet property="collectionView" destination="lah-sn-UzN" id="xts-mW-uck"/>
                                 </connections>

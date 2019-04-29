@@ -12,24 +12,25 @@ import SDWebImage
 // collection view cell on main window
 class CollageCollectionViewCell: UICollectionViewCell {
     
-    var zoomDelegate: CollageTableViewController?
+    var zoomDelegator: CollageTableViewController?
 
     // set image view and add gesture to it
-    lazy var photoImageView: UIImageView = {
+    private lazy var photoImageView: UIImageView = {
         let imageView = UIImageView(frame: CGRect.init(x: 0, y: 0, width: 0, height: 0))
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.isUserInteractionEnabled = true
+        imageView.clipsToBounds = true
         imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleZoomTap)))
         return imageView
     }()
     
     // handler tap to zoom
-    @objc func handleZoomTap(tapGesture: UITapGestureRecognizer) {
+    @objc private func handleZoomTap(tapGesture: UITapGestureRecognizer) {
         guard let imageView = tapGesture.view as? UIImageView else { return }
-        zoomDelegate?.performZoomForImageView(imageView)
+        zoomDelegator?.performZoomForImageView(imageView)
     }
     
-    // set layout collectionCell subviews
+    // layout collectionViewCell subviews
     override func layoutSubviews() {
         super.layoutSubviews()
         self.contentView.addSubview(photoImageView)
@@ -39,7 +40,7 @@ class CollageCollectionViewCell: UICollectionViewCell {
         photoImageView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
     }
     
-    // update collection cell with new data
+    // update collectionViewCell with new data
     func updateCollectionViewCell(withUrl url: URL) {
         photoImageView.sd_setImage(with: url, completed: nil)
     }

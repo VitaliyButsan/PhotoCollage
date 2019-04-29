@@ -118,7 +118,7 @@ class CollageTableViewController: UITableViewController {
     
     // row height
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 175
+        return UIDevice.current.modelName == "iPhone 5" ? 145 : 175
     }
     
     // delete row with swipe
@@ -146,25 +146,25 @@ class CollageTableViewController: UITableViewController {
             receiveNewPage()
         }
     }
-    
+   
     
     // MARK: — ZOOM STAFF
     //----------------------------------------
-    var basicFrame: CGRect?
-    var grayBackgroundView: UIView?
-    var basicImageView: UIImageView?
+    private var basicFrame: CGRect?
+    private var grayBackgroundView: UIView?
+    private var basicImageView: UIImageView?
     
     // realized zoom logic
     func performZoomForImageView(_ basicImageView: UIImageView) {
         
         self.basicImageView = basicImageView
         basicImageView.isHidden = true
-        // create new-frame on original photo place
+        // determine photo size and position
         basicFrame = basicImageView.superview?.convert(basicImageView.frame, to: nil)
         
         // create and set up zoomingView from basicFrame
         let zoomingView = UIImageView(frame: basicFrame!)
-        zoomingView.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+        zoomingView.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         zoomingView.image = basicImageView.image
         zoomingView.isUserInteractionEnabled = true
         zoomingView.contentMode = .scaleAspectFill
@@ -173,7 +173,7 @@ class CollageTableViewController: UITableViewController {
         // created and setting new window from main window
         if let keyWindow = UIApplication.shared.keyWindow {
             grayBackgroundView = UIView(frame: keyWindow.frame)
-            grayBackgroundView?.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+            grayBackgroundView?.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
             grayBackgroundView?.alpha = 0
             keyWindow.addSubview(grayBackgroundView!)
             keyWindow.addSubview(zoomingView)
@@ -188,7 +188,7 @@ class CollageTableViewController: UITableViewController {
     }
     
     // handling zoom out
-    @objc func handleZoomOut(tapGesture: UITapGestureRecognizer) {
+    @objc private func handleZoomOut(tapGesture: UITapGestureRecognizer) {
         
         if let zoomOutImageView = tapGesture.view {
             // animated zoom out

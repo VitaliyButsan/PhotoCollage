@@ -12,10 +12,10 @@ import SDWebImage
 // cell searching result
 class ResultsTableViewCell: UITableViewCell {
     
-    var resultsTableController: ResultsTableController?
+    private var collageTableController = CollageTableViewController()
     
     // custom image view
-    lazy var photoImageView: UIImageView = {
+    private lazy var photoImageView: UIImageView = {
         var imageView = UIImageView(frame: CGRect.init(x: 0, y: 0, width: 0, height: 0))
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.isUserInteractionEnabled = true
@@ -24,9 +24,9 @@ class ResultsTableViewCell: UITableViewCell {
     }()
     
     // handler tap to zoom
-    @objc func handleZoomTap(tapGesture: UITapGestureRecognizer) {
+    @objc private func handleZoomTap(tapGesture: UITapGestureRecognizer) {
         guard let imageView = tapGesture.view as? UIImageView else { return }
-        resultsTableController?.performZoomForImageView(imageView)
+        collageTableController.performZoomForImageView(imageView)
     }
     
     // set layout for subviews
