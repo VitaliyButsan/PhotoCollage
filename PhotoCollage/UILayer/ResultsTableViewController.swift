@@ -11,7 +11,7 @@ import Netvit
 import SDWebImage
 
 // table controller showing searching results
-class ResultsTableController: UITableViewController, UISearchResultsUpdating {
+class ResultsTableViewController: UITableViewController, UISearchResultsUpdating {
 
     private let storagePhoto = PhotoStorage()
     private var pageNumber = 1
@@ -32,18 +32,19 @@ class ResultsTableController: UITableViewController, UISearchResultsUpdating {
         // if pages not over
         if pageNumber <= 10 {
             Netvit.searchPhotos(onPage: pageNumber, viaName: inputName) { result in
+                
                 switch result {
                 case .success(let allSearchingPhotos):
                     self.storagePhoto.searchingPhotoStorage += allSearchingPhotos.results
-                    self.tableView.reloadData()
+                    self.pageNumber += 1
                 case .failure( _ ):
                     self.alert(withTitle: "Data Not Received!", withMessage: "", titleForActionButton: "Ok")
                 }
+                
                 // status flag for pagination
                 self.loadingStatusFlag = true
+                self.tableView.reloadData()
             }
-            
-            pageNumber += 1
             
         } else {
             // if pages is over
@@ -67,7 +68,7 @@ class ResultsTableController: UITableViewController, UISearchResultsUpdating {
     
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 175
+        return 200
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

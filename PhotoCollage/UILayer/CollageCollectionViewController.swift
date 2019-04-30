@@ -10,23 +10,19 @@ import UIKit
 import Netvit
 
 // main table controller, with triple photo in a row
-class CollageTableViewController: UITableViewController {
+class CollageCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     private let photoStoreClass = PhotoStorage()
     private var pageNumber = 1
-    private var tripleCounter = 0
-    private var loadingStatusFlag = false
-    private let resultsTableView = ResultsTableController()
+    private let resultsTableView = ResultsTableViewController()
     private var searchController: UISearchController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // disable selection rows
-        tableView.allowsSelection = false
         // set up search controller
         setUpSearchController()
         // call refresh control
-        refreshControl()
+        refreshDataControl()
         // call getPhoto func
         getPhoto()
     }
@@ -36,30 +32,27 @@ class CollageTableViewController: UITableViewController {
         // if pages not over
         if pageNumber <= 10 {
             Netvit.getPhotos(onPage: pageNumber, withLimit: 30) { result in
+                
                 switch result {
                 case .success(let receivedPhotos):
                     self.photoStoreClass.storagePhoto += receivedPhotos
-                    self.tableView.reloadData()
+                    self.pageNumber += 1
                 case .failure( _ ):
                     // if data not received
                     self.alert(withTitle: "Data not received!", withMessage: "Try pull down to refresh.", titleForActionButton: "Ok")
-                    self.tableView.reloadData()
                 }
+                
                 // stop refresh control
-                self.refreshControl?.endRefreshing()
-                self.loadingStatusFlag = true
+                self.collectionView.refreshControl?.endRefreshing()
+                self.collectionView.reloadData()
             }
-            
-            pageNumber += 1
-            
         } else {
             // if pages is over
-            if loadingStatusFlag == false {
-                alert(withTitle: "No more photos!", withMessage: "", titleForActionButton: "Ok")
-            }
+            alert(withTitle: "No more photos!", withMessage: "", titleForActionButton: "Ok")
         }
     }
 
+    // receive new page
     private func receiveNewPage() {
         getPhoto()
     }
@@ -73,80 +66,59 @@ class CollageTableViewController: UITableViewController {
         definesPresentationContext = true
     }
     
-    // set up pull to refresh func
-    private func refreshControl() {
-        // clearing old photos before refresh
+    // set up pull-to-refresh
+    private func refreshDataControl() {
+        // clearing old photos before refreshing
         photoStoreClass.clearStoragePhoto()
         // set refreshControl
         let refreshControl = UIRefreshControl()
         refreshControl.tintColor = #colorLiteral(red: 0.3098039329, green: 0.2039215714, blue: 0.03921568766, alpha: 1)
         refreshControl.addTarget(self, action: #selector(getPhoto), for: UIControl.Event.valueChanged)
-        tableView.refreshControl = refreshControl
+        collectionView.refreshControl = refreshControl
     }
-    
-    // take three links from photo storage
-    private func tripleFromStorage(fromPhotoStorage storage: [PhotoDetails], withRow currentRow: Int) -> [URL] {
-        var triplePhoto: [PhotoDetails] = []
-        var tripleUrl: [URL] = []
-        // index for walk through array
-        let currentIndex = currentRow * 3
-        
-        if currentRow < storage.count {
-            // taken out three photo object
-            let sliseArray = storage[currentIndex ..< currentIndex + 3]
-            triplePhoto = Array(sliseArray)
-            // taken links from photo objects
-            for photoItem in triplePhoto {
-                tripleUrl.append(photoItem.urls.small)
-            }
-        }
-        
-        return tripleUrl
-    }
-    
+
     // set up alert handler
     private func alert(withTitle title: String, withMessage message: String, titleForActionButton buttonTitle: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: buttonTitle, style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
-        
+    
+    
     // MARK: - Table view data source
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return photoStoreClass.storagePhoto.count / 3
-    }
-    
-    // row height
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UIDevice.current.modelName == "iPhone 5" ? 145 : 175
-    }
-    
-    // delete row with swipe
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            photoStoreClass.removeTriplet(atIndex: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        }
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return photoStoreClass.storagePhoto.count
     }
 
-    // reuse cell
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CollageTableViewCell
-        let triplet = tripleFromStorage(fromPhotoStorage: photoStoreClass.storagePhoto, withRow: indexPath.row)
-        cell.updateCell(withTriplePhoto: triplet)
-        cell.zoomDelegateBrige = self
-        return cell
+    // cell size
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let multiplier: CGFloat = UIDevice.current.modelName == "iPhone 5" ? 0.1 : 0.08
+        let interSpacing = view.frame.width * multiplier
+        let cellWidth = (view.frame.width - interSpacing * 2) / 3
+        return .init(width: cellWidth, height: cellWidth + 20)
+    }
+
+    // cell paddings
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        let leftRightPadding = view.frame.width * 0.05
+        return .init(top: 10, left: leftRightPadding, bottom: 10, right: leftRightPadding)
     }
     
+    // reuse cell
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollageCollectionViewCell
+        cell.updateCollectionViewCell(withUrl: photoStoreClass.storagePhoto[indexPath.row].urls.small)
+        cell.delegate = self
+        return cell
+    }
+
     // pagination pages
-    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let isBottom = (tableView.contentOffset.y + tableView.frame.size.height) < tableView.contentSize.height
-        if !isBottom, scrollView.isDragging, loadingStatusFlag, !photoStoreClass.storagePhoto.isEmpty {
-            loadingStatusFlag = false
+    override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if indexPath.row == photoStoreClass.storagePhoto.count - 1 {
             receiveNewPage()
         }
     }
-   
+
     
     // MARK: — ZOOM STAFF
     //----------------------------------------
@@ -193,7 +165,7 @@ class CollageTableViewController: UITableViewController {
         if let zoomOutImageView = tapGesture.view {
             // animated zoom out
             UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
-                // zoom-frame reverse taked size of basic-frame
+                // zoom-frame reverse taked form-size of basic-frame
                 zoomOutImageView.frame = self.basicFrame!
                 self.grayBackgroundView?.alpha = 0
             }) { (completed: Bool) in

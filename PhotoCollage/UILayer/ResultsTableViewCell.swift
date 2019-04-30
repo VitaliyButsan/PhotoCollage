@@ -12,7 +12,7 @@ import SDWebImage
 // cell searching result
 class ResultsTableViewCell: UITableViewCell {
     
-    private var collageTableController = CollageTableViewController()
+    private var collageTableController = CollageCollectionViewController()
     
     // custom image view
     private lazy var photoImageView: UIImageView = {
@@ -35,7 +35,7 @@ class ResultsTableViewCell: UITableViewCell {
         self.addSubview(photoImageView)
         photoImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         photoImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        photoImageView.heightAnchor.constraint(equalToConstant: 150).isActive = true
+        photoImageView.heightAnchor.constraint(equalToConstant: 175).isActive = true
         photoImageView.widthAnchor.constraint(equalToConstant: 200).isActive = true
      }
     
