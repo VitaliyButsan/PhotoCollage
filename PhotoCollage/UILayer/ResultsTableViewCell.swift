@@ -41,6 +41,7 @@ class ResultsTableViewCell: UITableViewCell {
     
     // update cell with new data
     func updateCell(withPhtoURL photoURL: URL) {
+        // SDWebImage library func, for retrieve photos
         self.photoImageView.sd_setImage(with: photoURL, completed: nil)
     }
 

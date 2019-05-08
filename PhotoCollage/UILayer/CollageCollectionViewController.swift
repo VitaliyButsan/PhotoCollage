@@ -39,16 +39,22 @@ class CollageCollectionViewController: UICollectionViewController, UICollectionV
                     self.pageNumber += 1
                 case .failure( _ ):
                     // if data not received
-                    self.alert(withTitle: "Data not received!", withMessage: "Try pull down to refresh.", titleForActionButton: "Ok")
+                    DispatchQueue.main.async {
+                        self.alert(withTitle: "Data not received!", withMessage: "Try pull down to refresh.", titleForActionButton: "Ok")
+                    }
                 }
                 
                 // stop refresh control
-                self.collectionView.refreshControl?.endRefreshing()
-                self.collectionView.reloadData()
+                DispatchQueue.main.async {
+                    self.collectionView.refreshControl?.endRefreshing()
+                    self.collectionView.reloadData()
+                }
             }
         } else {
             // if pages is over
-            alert(withTitle: "No more photos!", withMessage: "", titleForActionButton: "Ok")
+            DispatchQueue.main.async {
+                self.alert(withTitle: "No more photos!", withMessage: "", titleForActionButton: "Ok")
+            }
         }
     }
 

@@ -8,7 +8,6 @@
 
 import UIKit
 import Netvit
-import SDWebImage
 
 // table controller showing searching results
 class ResultsTableViewController: UITableViewController, UISearchResultsUpdating {
@@ -38,18 +37,24 @@ class ResultsTableViewController: UITableViewController, UISearchResultsUpdating
                     self.storagePhoto.searchingPhotoStorage += allSearchingPhotos.results
                     self.pageNumber += 1
                 case .failure( _ ):
-                    self.alert(withTitle: "Data Not Received!", withMessage: "", titleForActionButton: "Ok")
+                    DispatchQueue.main.async {
+                        self.alert(withTitle: "Data Not Received!", withMessage: "", titleForActionButton: "Ok")
+                    }
                 }
                 
                 // status flag for pagination
-                self.loadingStatusFlag = true
-                self.tableView.reloadData()
+                DispatchQueue.main.async {
+                    self.loadingStatusFlag = true
+                    self.tableView.reloadData()
+                }
             }
             
         } else {
             // if pages is over
             if loadingStatusFlag == false {
-                self.alert(withTitle: "Searching is over!", withMessage: "", titleForActionButton: "Ok")
+                DispatchQueue.main.async {
+                    self.alert(withTitle: "Searching is over!", withMessage: "", titleForActionButton: "Ok")
+                }
             }
         }
     }

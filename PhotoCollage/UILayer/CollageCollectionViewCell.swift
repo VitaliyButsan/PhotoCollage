@@ -43,6 +43,7 @@ class CollageCollectionViewCell: UICollectionViewCell {
 
     // update collectionViewCell with new data
     func updateCollectionViewCell(withUrl url: URL) {
+        // SDWebImage library func, for retrieve photos
         photoImageView.sd_setImage(with: url, completed: nil)
     }
     

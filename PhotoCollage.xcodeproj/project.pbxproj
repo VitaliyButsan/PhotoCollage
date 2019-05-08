@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		243F7730F8198708CE6E9F64 /* Pods_PhotoCollage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59D2548621A096698D245B27 /* Pods_PhotoCollage.framework */; };
-		5801AA892276E5540067C33C /* Netvit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58B38A9C226D983C001CA116 /* Netvit.framework */; };
-		5801AA8A2276E5540067C33C /* Netvit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 58B38A9C226D983C001CA116 /* Netvit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5801AA932276E6720067C33C /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5801AA8E2276E6720067C33C /* DataModel.swift */; };
 		5801AA942276E6720067C33C /* NetworkingCommunicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5801AA902276E6720067C33C /* NetworkingCommunicator.swift */; };
 		5801AA952276E6720067C33C /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5801AA922276E6720067C33C /* Router.swift */; };
@@ -22,16 +20,18 @@
 		58B38A78226D92CB001CA116 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B38A77226D92CB001CA116 /* AppDelegate.swift */; };
 		58B38A7F226D92CD001CA116 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58B38A7E226D92CD001CA116 /* Assets.xcassets */; };
 		58B38A97226D95B7001CA116 /* PhotoStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B38A96226D95B7001CA116 /* PhotoStorage.swift */; };
+		58BFAE772282DADF003EF31F /* Netvit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58B38A9C226D983C001CA116 /* Netvit.framework */; };
+		58BFAE782282DADF003EF31F /* Netvit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 58B38A9C226D983C001CA116 /* Netvit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		5801AA8B2276E5540067C33C /* Embed Frameworks */ = {
+		58BFAE792282DAE0003EF31F /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				5801AA8A2276E5540067C33C /* Netvit.framework in Embed Frameworks */,
+				58BFAE782282DADF003EF31F /* Netvit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -64,7 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5801AA892276E5540067C33C /* Netvit.framework in Frameworks */,
+				58BFAE772282DADF003EF31F /* Netvit.framework in Frameworks */,
 				243F7730F8198708CE6E9F64 /* Pods_PhotoCollage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -204,7 +204,7 @@
 				58B38A71226D92CB001CA116 /* Frameworks */,
 				58B38A72226D92CB001CA116 /* Resources */,
 				9B3E7E5024D212BD8DE5E0D3 /* [CP] Embed Pods Frameworks */,
-				5801AA8B2276E5540067C33C /* Embed Frameworks */,
+				58BFAE792282DAE0003EF31F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -474,7 +474,6 @@
 				DEVELOPMENT_TEAM = 45JNFF5WM9;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/MyFrameworks",
 					"$(PROJECT_DIR)/Custom\\ Networking\\ Framework",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/PhotoCollage/Support Files/Info.plist";
@@ -498,7 +497,6 @@
 				DEVELOPMENT_TEAM = 45JNFF5WM9;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/MyFrameworks",
 					"$(PROJECT_DIR)/Custom\\ Networking\\ Framework",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/PhotoCollage/Support Files/Info.plist";
